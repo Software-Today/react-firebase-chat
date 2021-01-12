@@ -53,7 +53,8 @@ function App() {
 
   const ThemeIcon = darkMode ? SunIcon : MoonIcon;
 
-  const signInWithGoogle = async () => {
+  const signInWithGoogle = async e => {
+    e.preventDefault();
     // Retrieve Google provider object
     const provider = new firebase.auth.GoogleAuthProvider();
     // Set language to the default browser preference
@@ -61,6 +62,14 @@ function App() {
     // Start sign in process
     try {
       await firebase.auth().signInWithPopup(provider);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await firebase.auth().signOut();
     } catch (error) {
       console.log(error.message);
     }
@@ -75,10 +84,20 @@ function App() {
         <a href="https://alterclass.io/courses/react">
           <img src={brandLogo} alt="AlterClass" width={150} />
         </a>
-        <ThemeIcon
-          className="h-8 w-8 cursor-pointer"
-          onClick={() => setDarkMode(prev => !prev)}
-        />
+        <div className="flex items-center">
+          {user ? (
+            <button
+              onClick={signOut}
+              className="uppercase text-sm font-medium text-primary-500 hover:text-white tracking-wide hover:bg-primary-500 bg-transparent rounded py-2 px-4 mr-4 focus:outline-none focus:ring focus:ring-primary-500 focus:ring-opacity-75 transition-all"
+            >
+              Sign out
+            </button>
+          ) : null}
+          <ThemeIcon
+            className="h-8 w-8 cursor-pointer"
+            onClick={() => setDarkMode(prev => !prev)}
+          />
+        </div>
       </header>
       <main
         className="flex-1"
@@ -113,7 +132,7 @@ function App() {
               >
                 <svg
                   viewBox="5 -5 30 30"
-                  enable-background="new 5 -5 30 30"
+                  enableBackground="new 5 -5 30 30"
                   className="w-6 h-6 mr-4 flex-shrink-0"
                 >
                   <path
