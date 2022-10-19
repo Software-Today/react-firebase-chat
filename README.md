@@ -31,11 +31,12 @@ file provides four scripts:
 
 3. Install the dependencies: `npm install`
 
-4. Start the app in the development mode: `npm start`
+4. Add your firebase config in .env file.
 
-![Compiled successfully!](https://alterclass.s3.eu-west-3.amazonaws.com/react-firechat-compiled.png)
+5. Start the app in the development mode: `npm start`
 
-5. Open [http://localhost:3000](http://localhost:3000) to view your React
+![Compiled successfully!]
+
+6. Open [http://localhost:3000](http://localhost:3000) to view your React
    application in the browser
 
-![React starting point](https://alterclass.s3.eu-west-3.amazonaws.com/react-firechat.png)
